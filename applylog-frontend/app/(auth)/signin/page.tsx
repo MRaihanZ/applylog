@@ -2,14 +2,7 @@
 
 import { useState, SubmitEvent } from "react";
 
-import {
-	Mail,
-	Lock,
-	ArrowRight,
-	CircleExclamationPoint,
-	Eye,
-	EyeClosed,
-} from "lucide-react";
+import { Mail, Lock, ArrowRight, Eye, EyeClosed } from "lucide-react";
 
 export default function Page() {
 	const [email, setEmail] = useState<string>("");
