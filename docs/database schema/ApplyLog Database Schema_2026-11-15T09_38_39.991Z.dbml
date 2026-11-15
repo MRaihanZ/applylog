@@ -1,0 +1,97 @@
+enum employment_type {
+	"Full-Time"
+	"Part-Time"
+	Contract
+	Internship
+	Freelance
+}
+
+enum application_statuses {
+	Wishlist
+	Applied
+	"Under Review"
+	Assessment
+	Interview
+	"Offer Received"
+	Hired
+	Rejected
+	Withdrawn
+	Ghosted
+	Expired
+}
+
+Table users [headercolor: #175e7a] {
+	id uuid [ pk, not null ]
+	email varchar(255) [ not null, unique ]
+	password text [ not null ]
+	full_name varchar(50) [ not null ]
+	nickname varchar(20)
+	image varchar(26) [ note: 'NanoID(21).image_extension(.jpg, .jpeg, .png)' ]
+	created_at timestamptz [ not null ]
+	updated_at timestamptz [ not null ]
+}
+
+Table companies [headercolor: #175e7a] {
+	id uuid [ pk, not null ]
+	name varchar(255) [ not null, unique ]
+	website text
+	industry varchar(255)
+	location varchar(255)
+	image varchar(26) [ note: 'NanoID(21).image_extension(.jpg, .jpeg, .png)' ]
+	created_at timestamptz [ not null ]
+	updated_at timestamptz [ not null ]
+}
+
+Table job_applications [headercolor: #175e7a] {
+	id uuid [ pk, not null ]
+	user_id uuid [ not null ]
+	company_id uuid [ not null ]
+	job_title varchar(255) [ not null ]
+	employment_type employment_type [ not null ]
+	location varchar(255)
+	job_url text
+	salary_min integer [ not null ]
+	salary_max integer [ not null ]
+	currency char(3) [ not null ]
+	status application_statuses [ not null ]
+	applied_at date [ not null ]
+	deadline date [ not null ]
+	description text
+	cv varchar(26) [ note: 'NanoID(21).file_extension(.pdf, .docx)' ]
+	resume varchar(26) [ note: 'NanoID(21).file_extension(.pdf, .docx)' ]
+	created_at timestamptz [ not null ]
+	updated_at timestamptz [ not null ]
+}
+
+Table application_status_history [headercolor: #175e7a] {
+	id uuid [ pk, not null ]
+	application_id uuid [ not null ]
+	previous_status application_statuses [ not null ]
+	new_status application_statuses [ not null ]
+	created_at timestamptz [ not null ]
+}
+
+Table sessions [headercolor: #175e7a] {
+	id uuid [ pk, not null ]
+	user_id uuid [ not null ]
+	token text [ not null ]
+	created_at timestamptz [ not null ]
+	expires_at timestamptz [ not null ]
+	last_used_at timestamptz [ not null ]
+}
+
+Ref fk_sessions_user_id_users {
+	sessions.user_id - users.id [ delete: cascade, update: cascade ]
+}
+
+Ref fk_job_applications_company_id_companies {
+	job_applications.company_id > companies.id [ delete: cascade, update: cascade ]
+}
+
+Ref fk_job_applications_user_id_users {
+	job_applications.user_id > users.id [ delete: cascade, update: cascade ]
+}
+
+Ref fk_application_status_history_application_id_job_applications {
+	application_status_history.application_id > job_applications.id [ delete: no action, update: no action ]
+}
