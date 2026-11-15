@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+	/* Background */
+	--custom-background: #0c1116;
+	--custom-background-secondary: #111820;
+
+	/* Surface */
+	--custom-surface: #10171e;
+	--custom-surface-secondary: #181f27;
+	--custom-surface-hover: #202a34;
+
+	/* Brand */
+	--custom-primary: #fbae3c;
+	--custom-primary-hover: #ffc66d;
+	--custom-primary-active: #e87920;
+
+	/* Orange Variations */
+	--custom-orange-deep: #c65a18;
+	--custom-orange-burnt: #e87920;
+	--custom-orange-bright: #ffaa28;
+	--custom-orange-light: #ffd89a;
+
+	/* Orange Gradient */
+	--custom-yellow-gradient: #f99a1a;
+	--custom-orange-gradient: #da5815;
+
+	/* Typography */
+	--custom-foreground: #f5f5f5;
+	--custom-foreground-secondary: #b8b8b8;
+	--custom-foreground-muted: #858b91;
+	--custom-foreground-disabled: #626970;
+
+	/* Borders */
+	--custom-border: #303943;
+	--custom-border-glass: rgba(255, 255, 255, 0.15);
+	--custom-border-focus: #fbae3c;
+
+	/* Semantic */
+	--custom-success: #35b779;
+	--custom-error: #ef5350;
+	--custom-info: #42a5f5;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 }
