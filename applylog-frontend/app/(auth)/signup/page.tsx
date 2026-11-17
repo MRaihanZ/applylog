@@ -8,28 +8,45 @@ import {
 	UserRound,
 	Eye,
 	EyeClosed,
+	CircleExclamationPoint,
 } from "lucide-react";
+import { signUpSchema } from "@/schemas/auth/signup.schema";
+import { getFieldErrors } from "@/lib/validation";
 
 export default function Page() {
-	const [fullName, setFullName] = useState<string>("");
-	const [email, setEmail] = useState<string>("");
-	const [password, setPassword] = useState<string>("");
-	const [confirmPassword, setConfirmPassword] = useState<string>("");
+	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [showPassword, setShowPassword] = useState<boolean>(false);
-	const [confirmShowPassword, setConfirmShowPassword] =
+	const [showConfirmPassword, setShowConfirmPassword] =
 		useState<boolean>(false);
 	function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
 
+		// Clear previous errors
+		setErrors({});
+
+		const formData = new FormData(e.currentTarget);
+
+		const result = signUpSchema.safeParse({
+			fullName: formData.get("fullName"),
+			email: formData.get("email"),
+			password: formData.get("password"),
+			confirmPassword: formData.get("confirmPassword"),
+		});
+
+		if (!result.success) {
+			setErrors(getFieldErrors(result.error));
+			return;
+		}
+
 		alert(
 			"Full Name: " +
-				fullName +
+				result.data.fullName +
 				" | Email: " +
-				email +
+				result.data.email +
 				" | Password : " +
-				password +
+				result.data.password +
 				" | Confirm Password: " +
-				confirmPassword,
+				result.data.confirmPassword,
 		);
 	}
 	return (
@@ -56,12 +73,21 @@ export default function Page() {
 						type="text"
 						placeholder="Full Name"
 						className="border border-(--custom-border) bg-(--custom-surface) rounded-lg py-2 px-5"
-						value={fullName}
-						onChange={(e) => setFullName(e.target.value)}
+						aria-invalid={!!errors.fullName}
+						aria-describedby={errors.fullName ? "fullName-error" : undefined}
 					/>
-					<p className="mt-2 ms-1 text-sm text-(--custom-error) font-semibold">
-						* Fill full name form
-					</p>
+					{errors.fullName && (
+						<div
+							id="fullName-error"
+							className="flex items-center gap-2 mt-2 ms-1"
+							role="alert"
+						>
+							<CircleExclamationPoint color="#ef5350" size={17} />
+							<p className="text-sm text-(--custom-error) font-semibold">
+								{errors.fullName}
+							</p>
+						</div>
+					)}
 				</div>
 				<div className="flex flex-col flex-1 my-2">
 					<div className="flex gap-2 items-center mb-1">
@@ -76,12 +102,21 @@ export default function Page() {
 						type="email"
 						placeholder="example@domain.com"
 						className="border border-(--custom-border) bg-(--custom-surface) rounded-lg py-2 px-5"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
+						aria-invalid={!!errors.email}
+						aria-describedby={errors.email ? "email-error" : undefined}
 					/>
-					<p className="mt-2 ms-1 text-sm text-(--custom-error) font-semibold">
-						* Fill email form
-					</p>
+					{errors.email && (
+						<div
+							id="email-error"
+							className="flex items-center gap-2 mt-2 ms-1"
+							role="alert"
+						>
+							<CircleExclamationPoint color="#ef5350" size={17} />
+							<p className="text-sm text-(--custom-error) font-semibold">
+								{errors.email}
+							</p>
+						</div>
+					)}
 				</div>
 				<div className="flex flex-col flex-1 my-2">
 					<div className="flex gap-2 items-center mb-1">
@@ -100,9 +135,9 @@ export default function Page() {
 									? "Create secure password"
 									: "••••••••••••••••••••••"
 							}
-							className="border border-(--custom-border) bg-(--custom-surface) rounded-lg py-2 ps-5 pe-10 flex-1 "
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
+							className="border border-(--custom-border) bg-(--custom-surface) rounded-lg py-2 ps-5 pe-10 flex-1"
+							aria-invalid={!!errors.password}
+							aria-describedby={errors.password ? "password-error" : undefined}
 						/>
 						<button
 							type="button"
@@ -116,46 +151,69 @@ export default function Page() {
 							)}
 						</button>
 					</div>
-					<p className="mt-2 ms-1 text-sm text-(--custom-error) font-semibold">
-						* Fill password form
-					</p>
+					{errors.password && (
+						<div
+							id="password-error"
+							className="flex items-center gap-2 mt-2 ms-1"
+							role="alert"
+						>
+							<CircleExclamationPoint color="#ef5350" size={17} />
+							<p className="text-sm text-(--custom-error) font-semibold">
+								{errors.password}
+							</p>
+						</div>
+					)}
 				</div>
 				<div className="flex flex-col flex-1 my-2">
 					<div className="flex gap-2 items-center mb-1">
 						<Lock color="#f99a1a" size={20} />
-						<label htmlFor="password" className="text-(--custom-foreground)">
+						<label
+							htmlFor="confirmPassword"
+							className="text-(--custom-foreground)"
+						>
 							Confirm Password
 						</label>
 					</div>
 					<div className="relative flex flex-1">
 						<input
-							id="passwordConfirmation"
-							name="passwordConfirmation"
-							type={confirmShowPassword === true ? "text" : "password"}
+							id="confirmPassword"
+							name="confirmPassword"
+							type={showConfirmPassword === true ? "text" : "password"}
 							placeholder={
-								confirmShowPassword === true
+								showConfirmPassword === true
 									? "Create secure password"
 									: "••••••••••••••••••••••"
 							}
 							className="border border-(--custom-border) bg-(--custom-surface) rounded-lg py-2 px-5 pe-10 flex-1"
-							value={confirmPassword}
-							onChange={(e) => setConfirmPassword(e.target.value)}
+							aria-invalid={!!errors.confirmPassword}
+							aria-describedby={
+								errors.confirmPassword ? "confirmPassword-error" : undefined
+							}
 						/>
 						<button
 							type="button"
 							className="absolute z-10 right-3 bottom-3 cursor-pointer"
-							onClick={() => setConfirmShowPassword(!confirmShowPassword)}
+							onClick={() => setShowConfirmPassword(!showConfirmPassword)}
 						>
-							{confirmShowPassword === true ? (
+							{showConfirmPassword === true ? (
 								<Eye color="#f99a1a" size={20} />
 							) : (
 								<EyeClosed color="#f99a1a" size={20} />
 							)}
 						</button>
 					</div>
-					<p className="mt-2 ms-1 text-sm text-(--custom-error) font-semibold">
-						* Password is different
-					</p>
+					{errors.confirmPassword && (
+						<div
+							id="confirmPassword-error"
+							className="flex items-center gap-2 mt-2 ms-1"
+							role="alert"
+						>
+							<CircleExclamationPoint color="#ef5350" size={17} />
+							<p className="text-sm text-(--custom-error) font-semibold">
+								{errors.confirmPassword}
+							</p>
+						</div>
+					)}
 				</div>
 				<div className="flex justify-center items-center flex-1 w-full mt-7 mb-3">
 					<button

@@ -2,16 +2,42 @@
 
 import { useState, SubmitEvent } from "react";
 
-import { Mail, Lock, ArrowRight, Eye, EyeClosed } from "lucide-react";
+import {
+	Mail,
+	Lock,
+	ArrowRight,
+	Eye,
+	EyeClosed,
+	CircleExclamationPoint,
+} from "lucide-react";
+import { signInSchema } from "@/schemas/auth/signin.schema";
+import { getFieldErrors } from "@/lib/validation";
 
 export default function Page() {
-	const [email, setEmail] = useState<string>("");
-	const [password, setPassword] = useState<string>("");
+	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [showPassword, setShowPassword] = useState<boolean>(false);
+
 	function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
 
-		alert("Email: " + email + " | Password : " + password);
+		// Clear previous errors
+		setErrors({});
+
+		const formData = new FormData(e.currentTarget);
+
+		const result = signInSchema.safeParse({
+			email: formData.get("email"),
+			password: formData.get("password"),
+		});
+
+		if (!result.success) {
+			setErrors(getFieldErrors(result.error));
+			return;
+		}
+
+		alert(
+			"Email: " + result.data.email + " | Password : " + result.data.password,
+		);
 	}
 
 	return (
@@ -38,15 +64,21 @@ export default function Page() {
 						type="email"
 						placeholder="example@domain.com"
 						className="border border-(--custom-border) bg-(--custom-surface) rounded-lg py-2 px-5"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
+						aria-invalid={!!errors.email}
+						aria-describedby={errors.email ? "email-error" : undefined}
 					/>
-					{/* <div className="flex items-center gap-2 mt-2 ms-1">
-						<CircleExclamationPoint color="#ef5350" size={17} />
-						<p className="text-sm text-(--custom-error) font-semibold">
-							Fill email form
-						</p>
-					</div> */}
+					{errors.email && (
+						<div
+							id="email-error"
+							className="flex items-center gap-2 mt-2 ms-1"
+							role="alert"
+						>
+							<CircleExclamationPoint color="#ef5350" size={17} />
+							<p className="text-sm text-(--custom-error) font-semibold">
+								{errors.email}
+							</p>
+						</div>
+					)}
 				</div>
 				<div className="flex flex-col flex-1 my-2">
 					<div className="flex gap-2 items-center mb-1">
@@ -65,9 +97,9 @@ export default function Page() {
 									? "Create secure password"
 									: "••••••••••••••••••••••"
 							}
-							className="border border-(--custom-border) bg-(--custom-surface) rounded-lg py-2 ps-5 pe-10 flex-1 "
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
+							className="border border-(--custom-border) bg-(--custom-surface) rounded-lg py-2 ps-5 pe-10 flex-1"
+							aria-invalid={!!errors.password}
+							aria-describedby={errors.password ? "password-error" : undefined}
 						/>
 						<button
 							type="button"
@@ -81,12 +113,18 @@ export default function Page() {
 							)}
 						</button>
 					</div>
-					{/* <div className="flex items-center gap-2 mt-2 ms-1">
-						<CircleExclamationPoint color="#ef5350" size={17} />
-						<p className="text-sm text-(--custom-error) font-semibold">
-							Fill password form
-						</p>
-					</div> */}
+					{errors.password && (
+						<div
+							id="password-error"
+							className="flex items-center gap-2 mt-2 ms-1"
+							role="alert"
+						>
+							<CircleExclamationPoint color="#ef5350" size={17} />
+							<p className="text-sm text-(--custom-error) font-semibold">
+								{errors.password}
+							</p>
+						</div>
+					)}
 				</div>
 				<div className="flex justify-center items-center flex-1 w-full mt-7 mb-3">
 					<button
