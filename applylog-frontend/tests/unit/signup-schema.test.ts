@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { signUpSchema } from "@/schemas/auth/signup.schema";
+import { asciiControlCharacter } from "@/utils/ascii-control-character";
 
 describe("signUpSchema", () => {
 	it("should accept valid sign in data", () => {
@@ -132,6 +133,25 @@ describe("signUpSchema", () => {
 		expect(result.success).toBe(false);
 	});
 
+	it("should reject ASCII control character in password", () => {
+		const result = signUpSchema.safeParse({
+			fullName: "Example Name",
+			email: "example@domain.com",
+			password: asciiControlCharacter,
+			confirmPassword: "password123",
+		});
+		expect(result.success).toBe(false);
+
+		if (!result.success) {
+			expect(result.error.issues).toContainEqual(
+				expect.objectContaining({
+					path: ["password"],
+					message: "Control ASCII character are not allowed",
+				}),
+			);
+		}
+	});
+
 	// Confirm password test
 	it("should trim whitespace from password", () => {
 		const result = signUpSchema.safeParse({
@@ -165,6 +185,36 @@ describe("signUpSchema", () => {
 			confirmPassword: "a".repeat(33),
 		});
 		expect(result.success).toBe(false);
+	});
+
+	it("should reject ASCII control character in confirm password", () => {
+		const result = signUpSchema.safeParse({
+			fullName: "Example Name",
+			email: "example@domain.com",
+			password: "password123",
+			confirmPassword: asciiControlCharacter,
+		});
+		expect(result.success).toBe(false);
+
+		if (!result.success) {
+			expect(result.error.issues).toContainEqual(
+				expect.objectContaining({
+					path: ["confirmPassword"],
+					message: "Control ASCII character are not allowed",
+				}),
+			);
+		}
+	});
+
+	// Password and confirm password test
+	it("should accept legitimate special characters in password and confirm password", () => {
+		const result = signUpSchema.safeParse({
+			fullName: "Example Name",
+			email: "example@domain.com",
+			password: "P@ssw0rd!#$%^&*()",
+			confirmPassword: "P@ssw0rd!#$%^&*()",
+		});
+		expect(result.success).toBe(true);
 	});
 
 	it("should return the correct error message for password mismatch", () => {

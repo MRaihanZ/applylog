@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { signInSchema } from "@/schemas/auth/signin.schema";
+import { asciiControlCharacter } from "@/utils/ascii-control-character";
 
 describe("signInSchema", () => {
 	it("should accept valid sign in data", () => {
@@ -79,5 +80,30 @@ describe("signInSchema", () => {
 			password: "a".repeat(33),
 		});
 		expect(result.success).toBe(false);
+	});
+
+	it("should reject ASCII control character in password", () => {
+		const result = signInSchema.safeParse({
+			email: "example@domain.com",
+			password: asciiControlCharacter,
+		});
+		expect(result.success).toBe(false);
+
+		if (!result.success) {
+			expect(result.error.issues).toContainEqual(
+				expect.objectContaining({
+					path: ["password"],
+					message: "Control ASCII character are not allowed",
+				}),
+			);
+		}
+	});
+
+	it("should accept legitimate special characters in password", () => {
+		const result = signInSchema.safeParse({
+			email: "example@domain.com",
+			password: "P@ssw0rd!#$%^&*()",
+		});
+		expect(result.success).toBe(true);
 	});
 });
