@@ -1,4 +1,5 @@
 import z from "zod";
+import { noControlAsciiCharacter } from "../security.schema";
 
 export const signInSchema = z.object({
 	email: z
@@ -12,7 +13,8 @@ export const signInSchema = z.object({
 		.string()
 		.trim()
 		.min(6, "Minimum 6 character")
-		.max(30, "Password is too long"),
+		.max(30, "Password is too long")
+		.refine(noControlAsciiCharacter, "Control ASCII character are not allowed"),
 });
 
 export type SignInInput = z.infer<typeof signInSchema>;
