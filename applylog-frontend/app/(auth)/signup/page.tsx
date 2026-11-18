@@ -13,7 +13,7 @@ import {
 import { signUpSchema } from "@/schemas/auth/signup.schema";
 import { getFieldErrors } from "@/lib/validation";
 
-export default function Page() {
+export default function SignUp() {
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [showPassword, setShowPassword] = useState<boolean>(false);
 	const [showConfirmPassword, setShowConfirmPassword] =
