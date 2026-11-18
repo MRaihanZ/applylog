@@ -87,14 +87,33 @@ CREATE TABLE IF NOT EXISTS "application_status_history" (
 );
 
 CREATE TABLE IF NOT EXISTS "sessions" (
+	-- Session identifier
 	"id" UUID NOT NULL,
-	"user_id" UUID NOT NULL,
-	"token" TEXT NOT NULL,
-	"created_at" TIMESTAMPTZ NOT NULL,
-	"expires_at" TIMESTAMPTZ NOT NULL,
+	-- Associated user; NULL for anonymous
+	"user_id" UUID,
+	-- Hashed Session token
+	"session_token_hash" TEXT NOT NULL,
+	-- Hashed CSRF token
+	"csrf_token_hash" TEXT NOT NULL,
+	-- Session creation time
+	"created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+	-- Last qualifying activity
 	"last_used_at" TIMESTAMPTZ NOT NULL,
+	-- Current idle expiration
+	"expires_at" TIMESTAMPTZ NOT NULL,
+	-- Maximum session lifetime
+	"absolute_expires_at" TIMESTAMPTZ NOT NULL,
 	PRIMARY KEY("id")
 );
+
+COMMENT ON COLUMN "sessions"."id" IS 'Session identifier';
+COMMENT ON COLUMN "sessions"."user_id" IS 'Associated user; NULL for anonymous';
+COMMENT ON COLUMN "sessions"."session_token_hash" IS 'Hashed Session token';
+COMMENT ON COLUMN "sessions"."csrf_token_hash" IS 'Hashed CSRF token';
+COMMENT ON COLUMN "sessions"."created_at" IS 'Session creation time';
+COMMENT ON COLUMN "sessions"."last_used_at" IS 'Last qualifying activity';
+COMMENT ON COLUMN "sessions"."expires_at" IS 'Current idle expiration';
+COMMENT ON COLUMN "sessions"."absolute_expires_at" IS 'Maximum session lifetime';
 
 ALTER TABLE "sessions"
 ADD FOREIGN KEY("user_id") REFERENCES "users"("id")

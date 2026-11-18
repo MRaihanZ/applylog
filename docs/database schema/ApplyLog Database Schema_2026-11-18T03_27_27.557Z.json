@@ -128,7 +128,7 @@
       "id": "eh02sd5mnAASd6Kou-Jej",
       "name": "companies",
       "x": -578,
-      "y": -25.000000000000057,
+      "y": 0.1419885643098837,
       "locked": true,
       "fields": [
         {
@@ -246,13 +246,13 @@
       "uniqueConstraints": [],
       "color": "#175e7a",
       "collapsed": false,
-      "areaId": "bZ2PaZo31tnaLf3KGmWl7"
+      "areaId": "DIKXr33IOiqk3RdYIl4dz"
     },
     {
       "id": "P7kEylRPT4xjO3x1x76m5",
       "name": "job_applications",
-      "x": 35.01607905343758,
-      "y": -61.58615846148439,
+      "x": 43.99536068354837,
+      "y": -34.648313571152585,
       "locked": true,
       "fields": [
         {
@@ -514,8 +514,8 @@
     {
       "id": "WVeAWXhRGA1Gn_ma8t5tE",
       "name": "application_status_history",
-      "x": 289.1513463907031,
-      "y": -504.80111875746104,
+      "x": 303.5181969988803,
+      "y": -368.316037979779,
       "locked": true,
       "fields": [
         {
@@ -614,7 +614,7 @@
           "unsigned": true,
           "notNull": true,
           "increment": false,
-          "comment": "",
+          "comment": "Session identifier",
           "id": "jt02UOX5wtb3s-3MfM2C5",
           "size": "",
           "values": []
@@ -627,15 +627,15 @@
           "check": "",
           "primary": false,
           "unique": false,
-          "notNull": true,
+          "notNull": false,
           "increment": false,
-          "comment": "",
+          "comment": "Associated user; NULL for anonymous",
           "size": "",
           "values": []
         },
         {
           "id": "Z_oZTFKUeXzZqj5N7XVGI",
-          "name": "token",
+          "name": "session_token_hash",
           "type": "TEXT",
           "default": "",
           "check": "",
@@ -643,7 +643,21 @@
           "unique": false,
           "notNull": true,
           "increment": false,
-          "comment": "",
+          "comment": "Hashed Session token",
+          "size": "",
+          "values": []
+        },
+        {
+          "id": "6basuVnDEQ6IKiVaOdheQ",
+          "name": "csrf_token_hash",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "Hashed CSRF token",
           "size": "",
           "values": []
         },
@@ -651,27 +665,13 @@
           "id": "Z3SdbHCg0M7Nn5KeDBjtL",
           "name": "created_at",
           "type": "TIMESTAMPTZ",
-          "default": "",
+          "default": "NOW()",
           "check": "",
           "primary": false,
           "unique": false,
           "notNull": true,
           "increment": false,
-          "comment": "",
-          "size": "",
-          "values": []
-        },
-        {
-          "id": "fOZJSFKuherjUKsxgZpQP",
-          "name": "expires_at",
-          "type": "TIMESTAMPTZ",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
+          "comment": "Session creation time",
           "size": "",
           "values": []
         },
@@ -685,7 +685,35 @@
           "unique": false,
           "notNull": true,
           "increment": false,
-          "comment": "",
+          "comment": "Last qualifying activity",
+          "size": "",
+          "values": []
+        },
+        {
+          "id": "fOZJSFKuherjUKsxgZpQP",
+          "name": "expires_at",
+          "type": "TIMESTAMPTZ",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "Current idle expiration",
+          "size": "",
+          "values": []
+        },
+        {
+          "id": "1iRY4AGEBBwjN7VjOU0_l",
+          "name": "absolute_expires_at",
+          "type": "TIMESTAMPTZ",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "Maximum session lifetime",
           "size": "",
           "values": []
         }
@@ -780,11 +808,11 @@
       "id": "DIKXr33IOiqk3RdYIl4dz",
       "name": "Database Schema",
       "x": -622.8798344318362,
-      "y": -550.6971378116018,
-      "width": 1150.93779071168,
-      "height": 1245.4949391141804,
+      "y": -550.8296930035118,
+      "width": 1507.9722243895585,
+      "height": 1245.6274943060903,
       "color": "#175e7a",
-      "locked": true
+      "locked": false
     }
   ],
   "views": [],

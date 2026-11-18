@@ -58,8 +58,10 @@ erDiagram
 	sessions {
 		UUID id
 		UUID user_id
-		TEXT token
+		TEXT session_token_hash
+		TEXT csrf_token_hash
 		TIMESTAMPTZ created_at
-		TIMESTAMPTZ expires_at
 		TIMESTAMPTZ last_used_at
+		TIMESTAMPTZ expires_at
+		TIMESTAMPTZ absolute_expires_at
 	}

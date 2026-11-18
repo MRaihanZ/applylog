@@ -72,12 +72,14 @@ Table application_status_history [headercolor: #175e7a] {
 }
 
 Table sessions [headercolor: #175e7a] {
-	id uuid [ pk, not null ]
-	user_id uuid [ not null ]
-	token text [ not null ]
-	created_at timestamptz [ not null ]
-	expires_at timestamptz [ not null ]
-	last_used_at timestamptz [ not null ]
+	id uuid [ pk, not null, note: 'Session identifier' ]
+	user_id uuid [ note: 'Associated user; NULL for anonymous' ]
+	session_token_hash text [ not null, note: 'Hashed Session token' ]
+	csrf_token_hash text [ not null, note: 'Hashed CSRF token' ]
+	created_at timestamptz [ not null, default: `NOW()`, note: 'Session creation time' ]
+	last_used_at timestamptz [ not null, note: 'Last qualifying activity' ]
+	expires_at timestamptz [ not null, note: 'Current idle expiration' ]
+	absolute_expires_at timestamptz [ not null, note: 'Maximum session lifetime' ]
 }
 
 Ref fk_sessions_user_id_users {

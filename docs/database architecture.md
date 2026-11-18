@@ -27,14 +27,16 @@ Stores registered user information.
 
 database-backed sessions.
 
-| Column       | Type        | Description          |
-| ------------ | ----------- | -------------------- |
-| id           | UUID        | Primary key          |
-| user_id      | UUID        | Foreign key to users |
-| token_hash   | TEXT        | Hashed session token |
-| created_at   | TIMESTAMPTZ | Session creation     |
-| expires_at   | TIMESTAMPTZ | Session expiration   |
-| last_used_at | TIMESTAMPTZ | Last activity        |
+| Column              | Type        | Description                     |
+| ------------------- | ----------- | ------------------------------- |
+| id                  | UUID        | Primary key                     |
+| user_id ?           | UUID        | Foreign key to users            |
+| session_token_hash  | TEXT        | Hashed session token            |
+| csrf_token_hash     | TEXT        | Hashed CSRF token               |
+| created_at          | TIMESTAMPTZ | Session creation                |
+| last_used_at        | TIMESTAMPTZ | Last qualifying activity        |
+| expires_at          | TIMESTAMPTZ | Current idle session expiration |
+| absolute_expires_at | TIMESTAMPTZ | Maximum session lifetime        |
 
 ## companies
 
