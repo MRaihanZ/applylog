@@ -7,7 +7,7 @@ import AuthLink from "./auth-link";
 
 export const metadata: Metadata = {
 	title: "Auth",
-	description: "Auth Page",
+	description: "Auth Page | Developed by MRaihanZ",
 };
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
