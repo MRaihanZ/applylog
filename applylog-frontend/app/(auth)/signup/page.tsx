@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, SubmitEvent } from "react";
+
+import { useRouter } from "next/navigation";
+
 import {
 	Mail,
 	Lock,
@@ -19,6 +22,8 @@ export default function SignUp() {
 	const [showConfirmPassword, setShowConfirmPassword] =
 		useState<boolean>(false);
 	const [csrfToken, setCsrfToken] = useState<string | null>(null);
+
+	const router = useRouter();
 
 	//* handle submited form
 	function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
@@ -53,6 +58,8 @@ export default function SignUp() {
 				" | Confirm Password: " +
 				result.data.confirmPassword,
 		);
+
+		router.push("/");
 	}
 	return (
 		<>

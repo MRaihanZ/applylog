@@ -2,6 +2,8 @@
 
 import { useState, SubmitEvent } from "react";
 
+import { useRouter } from "next/navigation";
+
 import {
 	Mail,
 	Lock,
@@ -17,6 +19,8 @@ export default function SignIn() {
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [showPassword, setShowPassword] = useState<boolean>(false);
 	const [csrfToken, setCsrfToken] = useState<string | null>(null);
+
+	const router = useRouter();
 
 	//* handle submited form
 	function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
@@ -42,6 +46,8 @@ export default function SignIn() {
 		alert(
 			"Email: " + result.data.email + " | Password : " + result.data.password,
 		);
+
+		router.push("/");
 	}
 
 	return (
