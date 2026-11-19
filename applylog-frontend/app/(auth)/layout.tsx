@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 import { BriefcaseBusiness } from "lucide-react";
 
-import AuthLink from "./auth-link";
+import AuthLink from "./_components/auth-link";
 
 export const metadata: Metadata = {
 	title: "Auth",
