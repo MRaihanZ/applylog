@@ -18,14 +18,18 @@ export default function SignUp() {
 	const [showPassword, setShowPassword] = useState<boolean>(false);
 	const [showConfirmPassword, setShowConfirmPassword] =
 		useState<boolean>(false);
+	const [csrfToken, setCsrfToken] = useState<string | null>(null);
+
+	//* handle submited form
 	function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
 
-		// Clear previous errors
+		//* clear previous errors
 		setErrors({});
 
 		const formData = new FormData(e.currentTarget);
 
+		//* sign up data validation and normalization
 		const result = signUpSchema.safeParse({
 			fullName: formData.get("fullName"),
 			email: formData.get("email"),
@@ -33,8 +37,9 @@ export default function SignUp() {
 			confirmPassword: formData.get("confirmPassword"),
 		});
 
+		//* check error from sign up data validation
 		if (!result.success) {
-			setErrors(getFieldErrors(result.error));
+			setErrors(getFieldErrors(result.error)); //! set error state
 			return;
 		}
 

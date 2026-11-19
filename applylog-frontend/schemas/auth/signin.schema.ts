@@ -3,8 +3,8 @@ import { noControlAsciiCharacter } from "../security.schema";
 
 export const signInSchema = z.object({
 	email: z
-		.string() // turning into string
-		.trim() // trim space
+		.string()
+		.trim()
 		.min(1, "Email is required")
 		.email("Invalid email address")
 		.toLowerCase(),

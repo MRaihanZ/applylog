@@ -15,8 +15,8 @@ export const signUpSchema = z
 			),
 
 		email: z
-			.string() // turning into string
-			.trim() // trim space
+			.string()
+			.trim()
 			.min(1, "Email is required")
 			.email("Invalid email address")
 			.toLowerCase(),
@@ -40,7 +40,7 @@ export const signUpSchema = z
 				noControlAsciiCharacter,
 				"Control ASCII character are not allowed",
 			),
-	})
+	}) //* Check password and confirm password
 	.refine((data) => data.password === data.confirmPassword, {
 		path: ["confirmPassword"],
 		message: "Password do not match",

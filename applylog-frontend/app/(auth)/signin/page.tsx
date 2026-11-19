@@ -16,22 +16,28 @@ import { getFieldErrors } from "@/lib/validation";
 export default function SignIn() {
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [showPassword, setShowPassword] = useState<boolean>(false);
+	const [csrfToken, setCsrfToken] = useState<string | null>(null);
 
+	//* handle submited form
 	function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
 
-		// Clear previous errors
+		//* Clear previous errors
 		setErrors({});
 
 		const formData = new FormData(e.currentTarget);
 
+		//* sign in data validation and normalization
 		const result = signInSchema.safeParse({
 			email: formData.get("email"),
 			password: formData.get("password"),
 		});
 
+		//* check error from sign in data validation
 		if (!result.success) {
-			setErrors(getFieldErrors(result.error));
+			setErrors(getFieldErrors(result.error)); //! set error state
+			console.log(result.error.issues[0].path);
+			console.log(errors.password);
 			return;
 		}
 
