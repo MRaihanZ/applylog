@@ -36,8 +36,6 @@ export default function SignIn() {
 		//* check error from sign in data validation
 		if (!result.success) {
 			setErrors(getFieldErrors(result.error)); //! set error state
-			console.log(result.error.issues[0].path);
-			console.log(errors.password);
 			return;
 		}
 
