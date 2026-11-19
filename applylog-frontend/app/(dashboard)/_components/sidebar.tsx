@@ -40,7 +40,7 @@ export default function SideBar() {
 	return (
 		<aside className="bg-(--custom-background)/80 min-w-64 flex flex-col justify-between border-e border-(--custom-border-glass)">
 			<div className="flex-1">
-				<div className="flex justify-center items-center gap-3 mb-7 mt-4">
+				<div className="flex justify-center items-center gap-3 mb-7 mt-5">
 					<BriefcaseBusiness color="#f99a1a" size={40} />
 					<h1 className="text-2xl text-center">ApplyLog</h1>
 				</div>
@@ -113,7 +113,7 @@ export default function SideBar() {
 							src="/assets/img/profile.png"
 							width={36}
 							height={36}
-							alt="Profile Picture"
+							alt="User Profile Picture"
 							className="rounded-full"
 						/> */}
 						<CircleUserRound size={36} />
