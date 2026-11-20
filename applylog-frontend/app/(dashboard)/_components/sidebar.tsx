@@ -82,7 +82,7 @@ export default function SideBar() {
 						/>
 						<Link
 							href="/"
-							className="z-10 flex gap-3 py-3 ps-4"
+							className="z-10 flex gap-3 py-3 ps-4 rounded-xl hover:bg-linear-to-r from-(--custom-yellow-gradient)/40 to-(--custom-orange-gradient)/40"
 							onClick={() => setActiveIndex(0)}
 							onMouseEnter={() => sideNavLinkHover("hover", 0)}
 							onMouseLeave={() => sideNavLinkHover("leave", 0)}
@@ -92,7 +92,7 @@ export default function SideBar() {
 						</Link>
 						<Link
 							href="/application"
-							className="z-10 flex gap-3 py-3 ps-4"
+							className="z-10 flex gap-3 py-3 ps-4 rounded-xl hover:bg-linear-to-r from-(--custom-yellow-gradient)/40 to-(--custom-orange-gradient)/40"
 							onClick={() => setActiveIndex(1)}
 							onMouseEnter={() => sideNavLinkHover("hover", 1)}
 							onMouseLeave={() => sideNavLinkHover("leave", 1)}
@@ -102,7 +102,7 @@ export default function SideBar() {
 						</Link>
 						<Link
 							href="/company"
-							className="z-10 flex gap-3 py-3 ps-4"
+							className="z-10 flex gap-3 py-3 ps-4 rounded-xl hover:bg-linear-to-r from-(--custom-yellow-gradient)/40 to-(--custom-orange-gradient)/40"
 							onClick={() => setActiveIndex(2)}
 							onMouseEnter={() => sideNavLinkHover("hover", 2)}
 							onMouseLeave={() => sideNavLinkHover("leave", 2)}
@@ -112,7 +112,7 @@ export default function SideBar() {
 						</Link>
 						<Link
 							href="/statistic"
-							className="z-10 flex gap-3 py-3 ps-4"
+							className="z-10 flex gap-3 py-3 ps-4 rounded-xl hover:bg-linear-to-r from-(--custom-yellow-gradient)/40 to-(--custom-orange-gradient)/40"
 							onClick={() => setActiveIndex(3)}
 							onMouseEnter={() => sideNavLinkHover("hover", 3)}
 							onMouseLeave={() => sideNavLinkHover("leave", 3)}
@@ -122,7 +122,7 @@ export default function SideBar() {
 						</Link>
 						<Link
 							href="/calendar"
-							className="z-10 flex gap-3 py-3 ps-4"
+							className="z-10 flex gap-3 py-3 ps-4 rounded-xl hover:bg-linear-to-r from-(--custom-yellow-gradient)/40 to-(--custom-orange-gradient)/40"
 							onClick={() => setActiveIndex(4)}
 							onMouseEnter={() => sideNavLinkHover("hover", 4)}
 							onMouseLeave={() => sideNavLinkHover("leave", 4)}
@@ -133,7 +133,7 @@ export default function SideBar() {
 						<hr className="border-(--custom-border-glass)" />
 						<Link
 							href="/setting"
-							className="z-10 flex gap-3 py-3 ps-4"
+							className="z-10 flex gap-3 py-3 ps-4 rounded-xl hover:bg-linear-to-r from-(--custom-yellow-gradient)/40 to-(--custom-orange-gradient)/40"
 							onClick={() => setActiveIndex(5)}
 							onMouseEnter={() => sideNavLinkHover("hover", 5)}
 							onMouseLeave={() => sideNavLinkHover("leave", 5)}
@@ -147,7 +147,7 @@ export default function SideBar() {
 			<div className="flex-none flex flex-col px-5 pb-5">
 				<button
 					onClick={handleLogOut}
-					className="flex-1 flex justify-center gap-3 py-3 border border-(--custom-border) bg-linear-to-r from-(--custom-yellow-gradient) hover:from-(--custom-yellow-gradient)/80 to-(--custom-orange-gradient) hover:to-(--custom-orange-gradient)/80 rounded-xl cursor-pointer"
+					className="flex-1 flex justify-center gap-3 py-2.5 border border-(--custom-border) bg-linear-to-r from-(--custom-yellow-gradient) hover:from-(--custom-yellow-gradient)/80 to-(--custom-orange-gradient) hover:to-(--custom-orange-gradient)/80 rounded-xl cursor-pointer"
 				>
 					<LogOut />
 					Logout
