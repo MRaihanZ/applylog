@@ -23,7 +23,7 @@ export default function SignIn() {
 	const router = useRouter();
 
 	//* handle submited form
-	function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
+	const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		//* Clear previous errors
@@ -48,7 +48,7 @@ export default function SignIn() {
 		);
 
 		router.push("/");
-	}
+	};
 
 	return (
 		<>

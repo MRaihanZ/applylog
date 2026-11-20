@@ -26,7 +26,7 @@ export default function SignUp() {
 	const router = useRouter();
 
 	//* handle submited form
-	function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
+	const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		//* clear previous errors
@@ -60,7 +60,7 @@ export default function SignUp() {
 		);
 
 		router.push("/");
-	}
+	};
 	return (
 		<>
 			<div className="mt-6 mb-3">
