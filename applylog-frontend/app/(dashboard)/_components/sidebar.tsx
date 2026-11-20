@@ -47,7 +47,6 @@ export default function SideBar() {
 	const sideNavLinkHover = (state: string, index: number) => {
 		//* Mouse enter in the same active index
 		if (state === "hover" && index === activeIndex) {
-			console.log("inside if");
 			setTransBgGradient(
 				"absolute left-0 w-full h-[calc(11.6%)] rounded-xl transition-transform duration-300 ease-in-out bg-linear-to-r from-(--custom-yellow-gradient)/80 to-(--custom-orange-gradient)/80",
 			);
@@ -55,7 +54,6 @@ export default function SideBar() {
 
 		//* Mouse leave in the same active index
 		if (state === "leave" && index === activeIndex) {
-			console.log("outside if");
 			setTransBgGradient(
 				"absolute left-0 w-full h-[calc(11.6%)] rounded-xl transition-transform duration-300 ease-in-out bg-linear-to-r from-(--custom-yellow-gradient) to-(--custom-orange-gradient)",
 			);
