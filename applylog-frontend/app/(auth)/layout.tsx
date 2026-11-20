@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
 
-import { BriefcaseBusiness } from "lucide-react";
+import { BriefcasePlus } from "lucide-react";
 
 import AuthLink from "./_components/auth-link";
 
@@ -26,7 +26,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 				<div className="pointer-events-none absolute -bottom-16 -left-10 h-24 w-52 rotate-45 bg-linear-to-t from-(--custom-yellow-gradient) to-(--custom-orange-gradient) blur-[30px]"></div>
 				<section className="bg-(--custom-surface)/20 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl p-6 text-white w-md">
 					<div className="flex flex-1 justify-center items-center gap-3 mb-7 mt-3">
-						<BriefcaseBusiness color="#f99a1a" size={40} />
+						<BriefcasePlus color="#f99a1a" size={40} />
 						<h1 className="bold text-3xl text-center">ApplyLog</h1>
 					</div>
 					<AuthLink />

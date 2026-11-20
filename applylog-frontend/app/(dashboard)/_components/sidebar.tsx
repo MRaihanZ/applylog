@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import {
 	BriefcaseBusiness,
+	BriefcasePlus,
 	House,
 	BuildingComplex,
 	ChartNoAxesColumn,
@@ -68,7 +69,7 @@ export default function SideBar() {
 		<aside className="bg-(--custom-background)/80 min-w-64 flex flex-col justify-between border-e border-(--custom-border-glass)">
 			<div className="flex-1">
 				<div className="flex justify-center items-center gap-3 mb-7 mt-5">
-					<BriefcaseBusiness color="#f99a1a" size={40} />
+					<BriefcasePlus color="#f99a1a" size={40} />
 					<h1 className="text-2xl text-center">ApplyLog</h1>
 				</div>
 				<div className="flex justify-center px-5">
