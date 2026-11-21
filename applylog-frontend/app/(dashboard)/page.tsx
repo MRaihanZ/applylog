@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import HeaderDashboard from "./_components/headerDashboard";
+
 export const metadata: Metadata = {
 	title: "Dashboard",
 	description: "Dashboard Page | Developed by MRaihanZ",
@@ -8,9 +10,8 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
 	return (
 		<>
-			<div>
-				<p>Dashboard Page</p>
-			</div>
+			<HeaderDashboard />
+			<div className="border border-amber-50 h-[100rem]"></div>
 		</>
 	);
 }
