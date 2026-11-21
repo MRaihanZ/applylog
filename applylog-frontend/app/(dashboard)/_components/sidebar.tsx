@@ -66,7 +66,7 @@ export default function SideBar() {
 	};
 
 	return (
-		<aside className="bg-(--custom-background)/80 min-w-64 flex flex-col justify-between border-e border-(--custom-border-glass)">
+		<aside className="sticky bg-(--custom-background)/80 min-w-64 flex flex-col justify-between border-e border-(--custom-border-glass)">
 			<div className="flex-1">
 				<div className="flex justify-center items-center gap-3 mb-7 mt-5">
 					<BriefcasePlus color="#f99a1a" size={40} />
