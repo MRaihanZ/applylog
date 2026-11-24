@@ -17,7 +17,7 @@ const TITLE_INDEX: Record<number, string> = {
 };
 
 const ICON_INDEX: Record<number, React.ReactNode> = {
-	0: <BriefcaseBusiness size={30} color="#fbae3c" />,
+	0: <BriefcaseBusiness size={30} color="#FBAE3C" />,
 	1: <Send size={30} color="#42a5f5" />,
 	2: <Check size={30} color="#35b779" />,
 	3: <Handshake size={30} color="#bae721" />,
@@ -25,7 +25,7 @@ const ICON_INDEX: Record<number, React.ReactNode> = {
 };
 
 const BG_INDEX: Record<number, string> = {
-	0: "flex justify-center items-center rounded-full p-3 bg-[#fbae3c]/40",
+	0: "flex justify-center items-center rounded-full p-3 bg-[#FBAE3C]/40",
 	1: "flex justify-center items-center rounded-full p-3 bg-[#42a5f5]/40",
 	2: "flex justify-center items-center rounded-full p-3 bg-[#35b779]/40",
 	3: "flex justify-center items-center rounded-full p-3 bg-[#bae721]/40",
