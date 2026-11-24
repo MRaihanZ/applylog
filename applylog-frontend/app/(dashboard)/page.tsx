@@ -18,31 +18,31 @@ export default function DashboardPage() {
 					type={0}
 					totalNumber={28}
 					totalPercentage={12}
-					stateIndicator={true}
+					stateIndicator="up"
 				/>
 				<DashboardSmallCard
 					type={1}
 					totalNumber={28}
-					totalPercentage={12}
-					stateIndicator={true}
+					totalPercentage={27}
+					stateIndicator="up"
 				/>
 				<DashboardSmallCard
 					type={2}
 					totalNumber={28}
-					totalPercentage={12}
-					stateIndicator={true}
+					totalPercentage={25}
+					stateIndicator="up"
 				/>
 				<DashboardSmallCard
 					type={3}
 					totalNumber={28}
-					totalPercentage={12}
-					stateIndicator={true}
+					totalPercentage={0}
+					stateIndicator="equal"
 				/>
 				<DashboardSmallCard
 					type={4}
 					totalNumber={28}
-					totalPercentage={12}
-					stateIndicator={true}
+					totalPercentage={17}
+					stateIndicator="down"
 				/>
 			</div>
 			<div className="flex flex-wrap justify-between gap-y-4">

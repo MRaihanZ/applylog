@@ -2,6 +2,7 @@ import {
 	BriefcaseBusiness,
 	ArrowUp,
 	ArrowDown,
+	ArrowRight,
 	Send,
 	Check,
 	Handshake,
@@ -32,11 +33,19 @@ const BG_INDEX: Record<number, string> = {
 	4: "flex justify-center items-center rounded-full p-3 bg-[#ef5350]/40",
 };
 
+const BG_HOVER_INDEX: Record<number, string> = {
+	0: "flex-1 flex items-center justify-center gap-5 border border-(--custom-border-glass) bg-(--custom-border)/20 rounded-xl py-4 hover:border-(--custom-orange-burnt) hover:bg-(--custom-orange-burnt)/50",
+	1: "flex-1 flex items-center justify-center gap-5 border border-(--custom-border-glass) bg-(--custom-border)/20 rounded-xl py-4 hover:border-[#42a5f5] hover:bg-[#42a5f5]/50",
+	2: "flex-1 flex items-center justify-center gap-5 border border-(--custom-border-glass) bg-(--custom-border)/20 rounded-xl py-4 hover:border-[#35b779] hover:bg-[#35b779]/50",
+	3: "flex-1 flex items-center justify-center gap-5 border border-(--custom-border-glass) bg-(--custom-border)/20 rounded-xl py-4 hover:border-[#bae721] hover:bg-[#bae721]/50",
+	4: "flex-1 flex items-center justify-center gap-5 border border-(--custom-border-glass) bg-(--custom-border)/20 rounded-xl py-4 hover:border-[#ef5350] hover:bg-[#ef5350]/50",
+};
+
 interface Props {
 	type: number;
 	totalNumber: number;
 	totalPercentage: number;
-	stateIndicator: boolean;
+	stateIndicator: string;
 }
 
 export default function DashboardSmallCard({
@@ -46,22 +55,39 @@ export default function DashboardSmallCard({
 	stateIndicator,
 }: Props) {
 	return (
-		<div className="flex-1 flex items-center justify-center gap-5 border border-(--custom-border-glass) hover:border-(--custom-orange-burnt) bg-(--custom-border)/20 hover:bg-(--custom-orange-burnt)/50 rounded-xl py-4">
+		<div className={BG_HOVER_INDEX[type]}>
 			<section className={BG_INDEX[type]}>{ICON_INDEX[type]}</section>
 			<section>
 				<p className="text-xs">{TITLE_INDEX[type]}</p>
 				<p className="text-3xl my-1">{totalNumber}</p>
 				<div className="flex text-xs gap-1">
-					{stateIndicator ? (
+					{stateIndicator === "up" && totalPercentage !== 0 ? (
 						<ArrowUp size={15} color="#35b779" />
+					) : stateIndicator === "equal" ? (
+						<ArrowRight size={15} color="#f5f5f5" />
 					) : (
 						<ArrowDown size={15} color="#ef5350" />
 					)}
-					<span className="text-(--custom-success)">
-						{stateIndicator ? "+" : "-"}
-						{totalPercentage}%
+					<span
+						className={
+							stateIndicator === "up" && totalPercentage !== 0
+								? "text-(--custom-success)"
+								: stateIndicator === "down"
+									? "text-(--custom-error)"
+									: ""
+						}
+					>
+						{stateIndicator === "up" && totalPercentage !== 0
+							? "+" + totalPercentage + "%"
+							: stateIndicator === "down"
+								? "-" + totalPercentage + "%"
+								: ""}
 					</span>
-					<p>from last month</p>
+					{stateIndicator !== "equal" ? (
+						<p>from last month</p>
+					) : (
+						<p>No change</p>
+					)}
 				</div>
 			</section>
 		</div>
