@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import HeaderDashboard from "./_components/headerDashboard";
 import DashboardSmallCard from "./_components/dashboardSmallCard";
 import DashboardLineChart from "./_components/dashboardLineChart";
+import LoadingDashboardSmallCard from "./_components/loadingDashboardSmallCard";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
 	title: "Dashboard",
@@ -28,36 +30,46 @@ export default function DashboardPage() {
 		<>
 			<HeaderDashboard />
 			<div className="flex gap-5 mb-5">
-				<DashboardSmallCard
-					type={0}
-					totalNumber={28}
-					totalPercentage={12}
-					stateIndicator="up"
-				/>
-				<DashboardSmallCard
-					type={1}
-					totalNumber={28}
-					totalPercentage={27}
-					stateIndicator="up"
-				/>
-				<DashboardSmallCard
-					type={2}
-					totalNumber={28}
-					totalPercentage={25}
-					stateIndicator="up"
-				/>
-				<DashboardSmallCard
-					type={3}
-					totalNumber={28}
-					totalPercentage={0}
-					stateIndicator="equal"
-				/>
-				<DashboardSmallCard
-					type={4}
-					totalNumber={28}
-					totalPercentage={17}
-					stateIndicator="down"
-				/>
+				<Suspense fallback={<LoadingDashboardSmallCard />}>
+					<DashboardSmallCard
+						type={0}
+						totalNumber={28}
+						totalPercentage={12}
+						stateIndicator="up"
+					/>
+				</Suspense>
+				<Suspense fallback={<LoadingDashboardSmallCard />}>
+					<DashboardSmallCard
+						type={1}
+						totalNumber={28}
+						totalPercentage={27}
+						stateIndicator="up"
+					/>
+				</Suspense>
+				<Suspense fallback={<LoadingDashboardSmallCard />}>
+					<DashboardSmallCard
+						type={2}
+						totalNumber={28}
+						totalPercentage={25}
+						stateIndicator="up"
+					/>
+				</Suspense>
+				<Suspense fallback={<LoadingDashboardSmallCard />}>
+					<DashboardSmallCard
+						type={3}
+						totalNumber={28}
+						totalPercentage={0}
+						stateIndicator="equal"
+					/>
+				</Suspense>
+				<Suspense fallback={<LoadingDashboardSmallCard />}>
+					<DashboardSmallCard
+						type={4}
+						totalNumber={28}
+						totalPercentage={17}
+						stateIndicator="down"
+					/>
+				</Suspense>
 			</div>
 			<div className="flex flex-wrap justify-between gap-y-4">
 				<div className="basis-[calc(60%-0.5rem)]  bg-(--custom-border)/20 border border-(--custom-border-glass) rounded-xl">
