@@ -62,7 +62,7 @@ const options: ChartOptions<"line"> = {
 
 		title: {
 			display: true,
-			text: "Application Statistics",
+			text: "Application Activity",
 			color: "#f5f5f5",
 			align: "start",
 			font: {
