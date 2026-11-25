@@ -21,7 +21,7 @@ const generateRandomData = (min: number, max: number) =>
 
 export default function DashboardPage() {
 	const chartData = {
-		TotalApplications: generateRandomData(5, 50),
+		Applied: generateRandomData(5, 50),
 		InProgress: generateRandomData(5, 50),
 		Interview: generateRandomData(5, 50),
 		Offer: generateRandomData(5, 50),
