@@ -144,6 +144,7 @@ export default function DashboardLineChart({ dataProps }: Props) {
 				pointBackgroundColor: "#42a5f5",
 				pointBorderColor: "#ffffff",
 				pointBorderWidth: 2,
+				hidden: true,
 			},
 			{
 				label: "Interview",
@@ -158,6 +159,7 @@ export default function DashboardLineChart({ dataProps }: Props) {
 				pointBackgroundColor: "#35b779",
 				pointBorderColor: "#ffffff",
 				pointBorderWidth: 2,
+				hidden: true,
 			},
 			{
 				label: "Offer",
