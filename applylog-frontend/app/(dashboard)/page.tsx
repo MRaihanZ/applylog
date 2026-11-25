@@ -15,20 +15,27 @@ export const metadata: Metadata = {
 };
 
 // Generate random application data
-const generateRandomData = (min: number, max: number) =>
+const generateRandomData = (length: number, min: number, max: number) =>
 	Array.from(
-		{ length: 10 },
+		{ length: length },
 		() => Math.floor(Math.random() * (max - min + 1)) + min,
 	);
 
 export default function DashboardPage() {
-	const chartData = {
-		Applied: generateRandomData(5, 50),
-		InProgress: generateRandomData(5, 50),
-		Interview: generateRandomData(5, 50),
-		Offer: generateRandomData(5, 50),
-		Rejected: generateRandomData(5, 50),
+	const lineChartData = {
+		Applied: generateRandomData(10, 5, 50),
+		InProgress: generateRandomData(10, 5, 50),
+		Interview: generateRandomData(10, 5, 50),
+		Offer: generateRandomData(10, 5, 50),
+		Rejected: generateRandomData(10, 5, 50),
 	};
+	const doughnutChartData: number[] = [
+		lineChartData.Applied[0],
+		lineChartData.InProgress[0],
+		lineChartData.Interview[0],
+		lineChartData.Offer[0],
+		lineChartData.Rejected[0],
+	];
 	return (
 		<>
 			<HeaderDashboard />
@@ -36,7 +43,7 @@ export default function DashboardPage() {
 				<Suspense fallback={<LoadingDashboardSmallCard />}>
 					<DashboardSmallCard
 						type={0}
-						totalNumber={28}
+						totalNumber={lineChartData.Applied[0]}
 						totalPercentage={12}
 						stateIndicator="up"
 					/>
@@ -44,7 +51,7 @@ export default function DashboardPage() {
 				<Suspense fallback={<LoadingDashboardSmallCard />}>
 					<DashboardSmallCard
 						type={1}
-						totalNumber={14}
+						totalNumber={lineChartData.InProgress[0]}
 						totalPercentage={27}
 						stateIndicator="up"
 					/>
@@ -52,7 +59,7 @@ export default function DashboardPage() {
 				<Suspense fallback={<LoadingDashboardSmallCard />}>
 					<DashboardSmallCard
 						type={2}
-						totalNumber={5}
+						totalNumber={lineChartData.Interview[0]}
 						totalPercentage={25}
 						stateIndicator="up"
 					/>
@@ -60,7 +67,7 @@ export default function DashboardPage() {
 				<Suspense fallback={<LoadingDashboardSmallCard />}>
 					<DashboardSmallCard
 						type={3}
-						totalNumber={2}
+						totalNumber={lineChartData.Offer[0]}
 						totalPercentage={0}
 						stateIndicator="equal"
 					/>
@@ -68,7 +75,7 @@ export default function DashboardPage() {
 				<Suspense fallback={<LoadingDashboardSmallCard />}>
 					<DashboardSmallCard
 						type={4}
-						totalNumber={7}
+						totalNumber={lineChartData.Rejected[0]}
 						totalPercentage={17}
 						stateIndicator="down"
 					/>
@@ -77,12 +84,12 @@ export default function DashboardPage() {
 			<div className="flex flex-wrap justify-between gap-y-4">
 				<div className="basis-[calc(60%-0.5rem)]  bg-(--custom-border)/20 border border-(--custom-border-glass) rounded-xl">
 					<Suspense fallback={<LoadingDashboardLineChart />}>
-						<DashboardLineChart dataProps={chartData} />
+						<DashboardLineChart dataProps={lineChartData} />
 					</Suspense>
 				</div>
 				<div className="basis-[calc(40%-0.5rem)] min-h-72 bg-(--custom-border)/20 border border-(--custom-border-glass) rounded-xl">
 					<Suspense fallback={<LoadingDashboardDoughnutChart />}>
-						<DashboardDoughnutChart />
+						<DashboardDoughnutChart dataProps={doughnutChartData} />
 					</Suspense>
 				</div>
 			</div>

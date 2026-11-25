@@ -22,11 +22,6 @@ const centerTextPlugin: Plugin<"doughnut"> = {
 
 		if (!chartArea) return;
 
-		const total = chart.data.datasets[0].data.reduce(
-			(sum, value) => sum + Number(value),
-			0,
-		);
-
 		const centerX = (chartArea.left + chartArea.right) / 2;
 		const centerY = (chartArea.top + chartArea.bottom) / 2;
 
@@ -38,7 +33,7 @@ const centerTextPlugin: Plugin<"doughnut"> = {
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 
-		ctx.fillText(String(total), centerX, centerY - 10);
+		ctx.fillText(String(chart.data.datasets[0].data[0]), centerX, centerY - 10);
 
 		// Subtitle
 		ctx.font = "12px sans-serif";
@@ -52,27 +47,6 @@ const centerTextPlugin: Plugin<"doughnut"> = {
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
-
-// Random application data
-const generateRandomData = (min: number, max: number) =>
-	Array.from(
-		{ length: 5 },
-		() => Math.floor(Math.random() * (max - min + 1)) + min,
-	);
-
-const data: ChartData<"doughnut"> = {
-	labels: ["Applied", "In Progress", "Interview", "Accepted", "Rejected"],
-
-	datasets: [
-		{
-			label: "Applications",
-			data: generateRandomData(5, 40),
-			backgroundColor: ["#fbae3c", "#42a5f5", "#35b779", "#bae721", "#ef5350"],
-			borderWidth: 0,
-			hoverOffset: 8,
-		},
-	],
-};
 
 const options: ChartOptions<"doughnut"> = {
 	responsive: true,
@@ -110,7 +84,30 @@ const options: ChartOptions<"doughnut"> = {
 	},
 };
 
-export default function DashboardDoughnutChart() {
+interface Props {
+	dataProps: number[];
+}
+
+export default function DashboardDoughnutChart({ dataProps }: Props) {
+	const data: ChartData<"doughnut"> = {
+		labels: ["Applied", "In Progress", "Interview", "Accepted", "Rejected"],
+
+		datasets: [
+			{
+				label: "Applications",
+				data: dataProps,
+				backgroundColor: [
+					"#fbae3c",
+					"#42a5f5",
+					"#35b779",
+					"#bae721",
+					"#ef5350",
+				],
+				borderWidth: 0,
+				hoverOffset: 8,
+			},
+		],
+	};
 	return (
 		<div className="w-full h-72 flex justify-center items-center pe-5">
 			<div className="h-52">
@@ -120,31 +117,31 @@ export default function DashboardDoughnutChart() {
 				<div className="grid grid-cols-7 justify-items-center content-center pb-2 border-b border-b-(--custom-border-glass)">
 					<span className="w-4 h-4 bg-[#fbae3c] rounded-full my-auto"></span>
 					<p className="text-sm my-auto col-span-3">Applied</p>
-					<p className="text-sm my-auto col-span-2">14</p>
+					<p className="text-sm my-auto col-span-2">{dataProps[0]}</p>
 					<p className="text-sm my-auto">50%</p>
 				</div>
 				<div className="grid grid-cols-7 justify-items-center content-center pb-2 border-b border-b-(--custom-border-glass)">
 					<span className="w-4 h-4 bg-[#42a5f5] rounded-full my-auto"></span>
 					<p className="text-sm my-auto col-span-3">In Progress</p>
-					<p className="text-sm my-auto col-span-2">14</p>
+					<p className="text-sm my-auto col-span-2">{dataProps[1]}</p>
 					<p className="text-sm my-auto">50%</p>
 				</div>
 				<div className="grid grid-cols-7 justify-items-center content-center pb-2 border-b border-b-(--custom-border-glass)">
 					<span className="w-4 h-4 bg-[#35b779] rounded-full my-auto"></span>
 					<p className="text-sm my-auto col-span-3">Interview</p>
-					<p className="text-sm my-auto col-span-2">14</p>
+					<p className="text-sm my-auto col-span-2">{dataProps[2]}</p>
 					<p className="text-sm my-auto">50%</p>
 				</div>
 				<div className="grid grid-cols-7 justify-items-center content-center pb-2 border-b border-b-(--custom-border-glass)">
 					<span className="w-4 h-4 bg-[#bae721] rounded-full my-auto"></span>
 					<p className="text-sm my-auto col-span-3">Accepted</p>
-					<p className="text-sm my-auto col-span-2">14</p>
+					<p className="text-sm my-auto col-span-2">{dataProps[3]}</p>
 					<p className="text-sm my-auto">50%</p>
 				</div>
 				<div className="grid grid-cols-7 justify-items-center content-center pb-2 border-b border-b-(--custom-border-glass)">
 					<span className="w-4 h-4 bg-[#ef5350] rounded-full my-auto"></span>
 					<p className="text-sm my-auto col-span-3">Rejected</p>
-					<p className="text-sm my-auto col-span-2">14</p>
+					<p className="text-sm my-auto col-span-2">{dataProps[4]}</p>
 					<p className="text-sm my-auto">50%</p>
 				</div>
 			</section>
