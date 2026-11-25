@@ -43,7 +43,7 @@ export default function DashboardPage() {
 				<Suspense fallback={<LoadingDashboardSmallCard />}>
 					<DashboardSmallCard
 						type={1}
-						totalNumber={28}
+						totalNumber={14}
 						totalPercentage={27}
 						stateIndicator="up"
 					/>
@@ -51,7 +51,7 @@ export default function DashboardPage() {
 				<Suspense fallback={<LoadingDashboardSmallCard />}>
 					<DashboardSmallCard
 						type={2}
-						totalNumber={28}
+						totalNumber={5}
 						totalPercentage={25}
 						stateIndicator="up"
 					/>
@@ -59,7 +59,7 @@ export default function DashboardPage() {
 				<Suspense fallback={<LoadingDashboardSmallCard />}>
 					<DashboardSmallCard
 						type={3}
-						totalNumber={28}
+						totalNumber={2}
 						totalPercentage={0}
 						stateIndicator="equal"
 					/>
@@ -67,7 +67,7 @@ export default function DashboardPage() {
 				<Suspense fallback={<LoadingDashboardSmallCard />}>
 					<DashboardSmallCard
 						type={4}
-						totalNumber={28}
+						totalNumber={7}
 						totalPercentage={17}
 						stateIndicator="down"
 					/>
