@@ -1,5 +1,3 @@
-import { ArrowUp } from "lucide-react";
-
 export default function LoadingDashboardSmallCard() {
 	return (
 		<div className="flex-1 border border-(--custom-border-glass) bg-(--custom-border)/20 rounded-xl">
