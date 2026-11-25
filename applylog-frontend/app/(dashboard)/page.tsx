@@ -6,6 +6,7 @@ import DashboardLineChart from "./_components/dashboardLineChart";
 import DashboardDoughnutChart from "./_components/dashboardDoughnutChart";
 import LoadingDashboardSmallCard from "./_components/loadingDashboardSmallCard";
 import LoadingDashboardLineChart from "./_components/loadingDashboardLineChart";
+import LoadingDashboardDoughnutChart from "./_components/loadingDashboardDoughnutChart";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
@@ -80,7 +81,9 @@ export default function DashboardPage() {
 					</Suspense>
 				</div>
 				<div className="basis-[calc(40%-0.5rem)] min-h-72 bg-(--custom-border)/20 border border-(--custom-border-glass) rounded-xl">
-					<DashboardDoughnutChart />
+					<Suspense fallback={<LoadingDashboardDoughnutChart />}>
+						<DashboardDoughnutChart />
+					</Suspense>
 				</div>
 			</div>
 		</>
