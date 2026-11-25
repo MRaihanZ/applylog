@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import HeaderDashboard from "./_components/headerDashboard";
 import DashboardSmallCard from "./_components/dashboardSmallCard";
 import DashboardLineChart from "./_components/dashboardLineChart";
+import DashboardDoughnutChart from "./_components/dashboardDoughnutChart";
 import LoadingDashboardSmallCard from "./_components/loadingDashboardSmallCard";
 import LoadingDashboardLineChart from "./_components/loadingDashboardLineChart";
 import { Suspense } from "react";
@@ -78,7 +79,9 @@ export default function DashboardPage() {
 						<DashboardLineChart dataProps={chartData} />
 					</Suspense>
 				</div>
-				<div className="basis-[calc(40%-0.5rem)] min-h-72 bg-(--custom-border)/20 border border-(--custom-border-glass) rounded-xl"></div>
+				<div className="basis-[calc(40%-0.5rem)] min-h-72 bg-(--custom-border)/20 border border-(--custom-border-glass) rounded-xl">
+					<DashboardDoughnutChart />
+				</div>
 			</div>
 		</>
 	);
