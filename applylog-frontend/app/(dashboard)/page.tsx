@@ -9,7 +9,21 @@ export const metadata: Metadata = {
 	description: "Dashboard Page | Developed by MRaihanZ",
 };
 
+// Generate random application data
+const generateRandomData = (min: number, max: number) =>
+	Array.from(
+		{ length: 10 },
+		() => Math.floor(Math.random() * (max - min + 1)) + min,
+	);
+
 export default function DashboardPage() {
+	const chartData = {
+		TotalApplications: generateRandomData(5, 50),
+		InProgress: generateRandomData(5, 50),
+		Interview: generateRandomData(5, 50),
+		Offer: generateRandomData(5, 50),
+		Rejected: generateRandomData(5, 50),
+	};
 	return (
 		<>
 			<HeaderDashboard />
@@ -47,7 +61,7 @@ export default function DashboardPage() {
 			</div>
 			<div className="flex flex-wrap justify-between gap-y-4">
 				<div className="basis-[calc(60%-0.5rem)]  bg-(--custom-border)/20 border border-(--custom-border-glass) rounded-xl">
-					<DashboardLineChart />
+					<DashboardLineChart dataProps={chartData} />
 				</div>
 				<div className="basis-[calc(40%-0.5rem)] min-h-72 bg-(--custom-border)/20 border border-(--custom-border-glass) rounded-xl"></div>
 			</div>
