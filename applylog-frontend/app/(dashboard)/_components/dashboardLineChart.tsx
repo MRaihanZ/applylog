@@ -196,7 +196,7 @@ export default function DashboardLineChart({ dataProps }: Props) {
 			<select
 				name="time"
 				id="time"
-				className="absolute top-5 right-9 px-3 py-0.5 rounded-lg border border-(--custom-border-glass) text-sm"
+				className="absolute top-5 right-7 px-3 py-0.5 rounded-lg border border-(--custom-border-glass) text-sm"
 			>
 				<option value="1" className={dateOptionClassName}>
 					Last 1 Month
