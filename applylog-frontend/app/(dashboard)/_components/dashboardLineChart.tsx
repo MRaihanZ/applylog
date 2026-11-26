@@ -208,8 +208,8 @@ export default function DashboardLineChart({ dataProps }: Props) {
 	return (
 		<div className="relative h-full w-full">
 			<select
-				name="Timeframe"
-				id="Timeframe"
+				name="timeframe"
+				id="timeframe"
 				value={timeframe}
 				onChange={handleTimeFrameOption}
 				className="absolute top-5 right-7 px-3 py-0.5 rounded-lg border border-(--custom-border-glass) text-sm"
