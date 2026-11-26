@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	BriefcaseBusiness,
 	BriefcasePlus,
@@ -33,9 +33,7 @@ function getInitialTab(path: string): number {
 
 export default function SideBar() {
 	const pathName = usePathname();
-	const [activeIndex, setActiveIndex] = useState<number>(() =>
-		getInitialTab(pathName),
-	);
+	const activeIndex = getInitialTab(pathName);
 	const [transBgGradient, setTransBgGradient] = useState<string>(
 		"absolute left-0 w-full h-[calc(11.6%)] rounded-xl transition-transform duration-300 ease-in-out bg-linear-to-r from-(--custom-yellow-gradient) to-(--custom-orange-gradient)",
 	);
@@ -84,7 +82,6 @@ export default function SideBar() {
 						<Link
 							href="/"
 							className="z-10 flex gap-3 py-3 ps-4 rounded-xl hover:bg-linear-to-r from-(--custom-yellow-gradient)/40 to-(--custom-orange-gradient)/40"
-							onClick={() => setActiveIndex(0)}
 							onMouseEnter={() => sideNavLinkHover("hover", 0)}
 							onMouseLeave={() => sideNavLinkHover("leave", 0)}
 						>
@@ -94,7 +91,6 @@ export default function SideBar() {
 						<Link
 							href="/application"
 							className="z-10 flex gap-3 py-3 ps-4 rounded-xl hover:bg-linear-to-r from-(--custom-yellow-gradient)/40 to-(--custom-orange-gradient)/40"
-							onClick={() => setActiveIndex(1)}
 							onMouseEnter={() => sideNavLinkHover("hover", 1)}
 							onMouseLeave={() => sideNavLinkHover("leave", 1)}
 						>
@@ -104,7 +100,6 @@ export default function SideBar() {
 						<Link
 							href="/company"
 							className="z-10 flex gap-3 py-3 ps-4 rounded-xl hover:bg-linear-to-r from-(--custom-yellow-gradient)/40 to-(--custom-orange-gradient)/40"
-							onClick={() => setActiveIndex(2)}
 							onMouseEnter={() => sideNavLinkHover("hover", 2)}
 							onMouseLeave={() => sideNavLinkHover("leave", 2)}
 						>
@@ -114,7 +109,6 @@ export default function SideBar() {
 						<Link
 							href="/statistic"
 							className="z-10 flex gap-3 py-3 ps-4 rounded-xl hover:bg-linear-to-r from-(--custom-yellow-gradient)/40 to-(--custom-orange-gradient)/40"
-							onClick={() => setActiveIndex(3)}
 							onMouseEnter={() => sideNavLinkHover("hover", 3)}
 							onMouseLeave={() => sideNavLinkHover("leave", 3)}
 						>
@@ -124,7 +118,6 @@ export default function SideBar() {
 						<Link
 							href="/calendar"
 							className="z-10 flex gap-3 py-3 ps-4 rounded-xl hover:bg-linear-to-r from-(--custom-yellow-gradient)/40 to-(--custom-orange-gradient)/40"
-							onClick={() => setActiveIndex(4)}
 							onMouseEnter={() => sideNavLinkHover("hover", 4)}
 							onMouseLeave={() => sideNavLinkHover("leave", 4)}
 						>
@@ -135,7 +128,6 @@ export default function SideBar() {
 						<Link
 							href="/setting"
 							className="z-10 flex gap-3 py-3 ps-4 rounded-xl hover:bg-linear-to-r from-(--custom-yellow-gradient)/40 to-(--custom-orange-gradient)/40"
-							onClick={() => setActiveIndex(5)}
 							onMouseEnter={() => sideNavLinkHover("hover", 5)}
 							onMouseLeave={() => sideNavLinkHover("leave", 5)}
 						>
