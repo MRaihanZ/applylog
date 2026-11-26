@@ -193,7 +193,7 @@ export default function DashboardLineChart({ dataProps }: Props) {
 		],
 	};
 	return (
-		<div className="relative h-72 w-full">
+		<div className="relative h-full w-full">
 			<select
 				name="time"
 				id="time"

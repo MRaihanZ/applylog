@@ -83,7 +83,7 @@ export default function DashboardPage() {
 				</Suspense>
 			</div>
 			<div className="flex flex-wrap justify-between gap-y-4">
-				<div className="basis-[calc(60%-0.5rem)]  bg-(--custom-border)/20 border border-(--custom-border-glass) rounded-xl">
+				<div className="basis-[calc(60%-0.5rem)] min-h-72 bg-(--custom-border)/20 border border-(--custom-border-glass) rounded-xl">
 					<Suspense fallback={<LoadingDashboardLineChart />}>
 						<DashboardLineChart dataProps={lineChartData} />
 					</Suspense>
