@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BuildingComplex, RotateCcwClock } from "lucide-react";
 import Image from "next/image";
 
 const STATUS_INDEX: Record<number, React.ReactNode> = {
@@ -34,7 +34,10 @@ export default function DashboardRecentApplication() {
 	return (
 		<div className="flex flex-col justify-center items-center gap-2">
 			<div className="w-full flex justify-between items-center mt-3 px-5">
-				<p>Recent Applications</p>
+				<div className="flex gap-2 items-center">
+					<RotateCcwClock />
+					<p>Recent Applications</p>
+				</div>
 				<Link
 					href="/application"
 					className="flex items-center gap-3 py-1.5 px-3 text-sm text-[#fbae3c] rounded-xl hover:bg-linear-to-r from-(--custom-yellow-gradient)/40 to-(--custom-orange-gradient)/40"
@@ -65,156 +68,27 @@ export default function DashboardRecentApplication() {
 						</tr>
 					</thead>
 					<tbody>
-						<tr className="border-b border-b-(--custom-border-glass)">
-							<td className="w-13 whitespace-nowrap">
-								<Image
+						{Array.from({ length: 6 }, (_, index) => (
+							<tr
+								key={index}
+								className="border-b border-b-(--custom-border-glass)"
+							>
+								<td className="w-13 whitespace-nowrap">
+									{/* <Image
 									src="/assets/img/logo/GoogleG.png"
 									width={52}
 									height={52}
 									alt="Google Logo"
 									className="rounded-full"
-								/>
-							</td>
-							<td>Google</td>
-							<td>Frontend Developer</td>
-							<td>Nov 14, 2026</td>
-							<td>{STATUS_INDEX[0]}</td>
-						</tr>
-						<tr className="border-b border-b-(--custom-border-glass)">
-							<td className="w-13 whitespace-nowrap">
-								<Image
-									src="/assets/img/logo/GoogleG.png"
-									width={52}
-									height={52}
-									alt="Google Logo"
-									className="rounded-full"
-								/>
-							</td>
-							<td>Google</td>
-							<td>Frontend Developer</td>
-							<td>Nov 14, 2026</td>
-							<td>{STATUS_INDEX[1]}</td>
-						</tr>
-						<tr className="border-b border-b-(--custom-border-glass)">
-							<td className="w-13 whitespace-nowrap">
-								<Image
-									src="/assets/img/logo/GoogleG.png"
-									width={52}
-									height={52}
-									alt="Google Logo"
-									className="rounded-full"
-								/>
-							</td>
-							<td>Google</td>
-							<td>Frontend Developer</td>
-							<td>Nov 14, 2026</td>
-							<td>{STATUS_INDEX[2]}</td>
-						</tr>
-						<tr className="border-b border-b-(--custom-border-glass)">
-							<td className="w-13 whitespace-nowrap">
-								<Image
-									src="/assets/img/logo/GoogleG.png"
-									width={52}
-									height={52}
-									alt="Google Logo"
-									className="rounded-full"
-								/>
-							</td>
-							<td>Google</td>
-							<td>Frontend Developer</td>
-							<td>Nov 14, 2026</td>
-							<td>{STATUS_INDEX[3]}</td>
-						</tr>
-						<tr className="border-b border-b-(--custom-border-glass)">
-							<td className="w-13 whitespace-nowrap">
-								<Image
-									src="/assets/img/logo/GoogleG.png"
-									width={52}
-									height={52}
-									alt="Google Logo"
-									className="rounded-full"
-								/>
-							</td>
-							<td>Google</td>
-							<td>Frontend Developer</td>
-							<td>Nov 14, 2026</td>
-							<td>{STATUS_INDEX[4]}</td>
-						</tr>
-						<tr className="border-b border-b-(--custom-border-glass)">
-							<td className="w-13 whitespace-nowrap">
-								<Image
-									src="/assets/img/logo/GoogleG.png"
-									width={52}
-									height={52}
-									alt="Google Logo"
-									className="rounded-full"
-								/>
-							</td>
-							<td>Google</td>
-							<td>Frontend Developer</td>
-							<td>Nov 14, 2026</td>
-							<td>{STATUS_INDEX[0]}</td>
-						</tr>
-						<tr className="border-b border-b-(--custom-border-glass)">
-							<td className="w-13 whitespace-nowrap">
-								<Image
-									src="/assets/img/logo/GoogleG.png"
-									width={52}
-									height={52}
-									alt="Google Logo"
-									className="rounded-full"
-								/>
-							</td>
-							<td>Google</td>
-							<td>Frontend Developer</td>
-							<td>Nov 14, 2026</td>
-							<td>{STATUS_INDEX[1]}</td>
-						</tr>
-						<tr className="border-b border-b-(--custom-border-glass)">
-							<td className="w-13 whitespace-nowrap">
-								<Image
-									src="/assets/img/logo/GoogleG.png"
-									width={52}
-									height={52}
-									alt="Google Logo"
-									className="rounded-full"
-								/>
-							</td>
-							<td>Google</td>
-							<td>Frontend Developer</td>
-							<td>Nov 14, 2026</td>
-							<td>{STATUS_INDEX[2]}</td>
-						</tr>
-						<tr className="border-b border-b-(--custom-border-glass)">
-							<td className="w-13 whitespace-nowrap">
-								<Image
-									src="/assets/img/logo/GoogleG.png"
-									width={52}
-									height={52}
-									alt="Google Logo"
-									className="rounded-full"
-								/>
-							</td>
-							<td>Google</td>
-							<td>Frontend Developer</td>
-							<td>Nov 14, 2026</td>
-							<td>{STATUS_INDEX[3]}</td>
-						</tr>
-						<tr className="border-b border-b-(--custom-border-glass)">
-							<td className="w-13 whitespace-nowrap">
-								<Image
-									src="/assets/img/logo/GoogleG.png"
-									width={52}
-									height={52}
-									alt="Google Logo"
-									className="rounded-full"
-								/>
-							</td>
-							<td>Google</td>
-							<td>Frontend Developer</td>
-							<td>Nov 14, 2026</td>
-							<td>{STATUS_INDEX[4]}</td>
-						</tr>
+								/> */}
+									<BuildingComplex size={52} className="p-2.5" />
+								</td>
+								<td>Google</td>
+								<td>Frontend Developer</td>
+								<td>Nov 14, 2026</td>
+								<td>{index === 5 ? STATUS_INDEX[0] : STATUS_INDEX[index]}</td>
+							</tr>
+						))}
 					</tbody>
 				</table>
 			</section>
