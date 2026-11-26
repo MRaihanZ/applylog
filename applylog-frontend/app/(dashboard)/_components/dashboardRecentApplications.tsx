@@ -108,7 +108,7 @@ export default function DashboardRecentApplication() {
 								<td>Frontend Developer</td>
 								<td>Nov 14, 2026</td>
 								<td>{index === 5 ? STATUS_INDEX[0] : STATUS_INDEX[index]}</td>
-								<td className="text-end">
+								<td className="text-end pe-5">
 									<select
 										name="statusApplication"
 										id="statusApplication"
