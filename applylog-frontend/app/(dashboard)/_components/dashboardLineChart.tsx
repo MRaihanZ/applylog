@@ -112,7 +112,6 @@ interface Props {
 
 export default function DashboardLineChart({ dataProps }: Props) {
 	const [timeframe, setTimeframe] = useState<number>(0);
-	const dateOptionClassName = "bg-(--custom-border)";
 
 	//* remove labels array index based on option timeFrame
 	const usedLabels =
@@ -215,25 +214,25 @@ export default function DashboardLineChart({ dataProps }: Props) {
 				onChange={handleTimeFrameOption}
 				className="absolute top-5 right-7 px-3 py-0.5 rounded-lg border border-(--custom-border-glass) text-sm"
 			>
-				<option value={0} className={dateOptionClassName}>
+				<option value={0} className="bg-(--custom-border)">
 					Default
 				</option>
-				<option value={1} className={dateOptionClassName}>
+				<option value={1} className="bg-(--custom-border)">
 					Last 1 Month
 				</option>
-				<option value={2} className={dateOptionClassName}>
+				<option value={2} className="bg-(--custom-border)">
 					Last 2 Month
 				</option>
-				<option value={3} className={dateOptionClassName}>
+				<option value={3} className="bg-(--custom-border)">
 					Last 3 Month
 				</option>
-				<option value={6} className={dateOptionClassName}>
+				<option value={6} className="bg-(--custom-border)">
 					Last 6 Month
 				</option>
-				<option value={9} className={dateOptionClassName}>
+				<option value={9} className="bg-(--custom-border)">
 					Last 9 Month
 				</option>
-				<option value={12} className={dateOptionClassName}>
+				<option value={12} className="bg-(--custom-border)">
 					Last 12 Month
 				</option>
 			</select>
