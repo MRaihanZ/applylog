@@ -1,38 +1,54 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, BuildingComplex, RotateCcwClock } from "lucide-react";
 import Image from "next/image";
 
 const STATUS_INDEX: Record<number, React.ReactNode> = {
 	0: (
-		<span className="bg-[#fbae3c]/25 text-[#fbae3c] rounded-xl py-1.5 px-4 text-xs font-semibold">
+		<p className="w-fit bg-[#fbae3c]/25 text-[#fbae3c] rounded-xl py-1.5 px-4 text-xs font-semibold">
 			Applied
-		</span>
+		</p>
 	),
 	1: (
-		<span className="bg-[#42a5f5]/25 text-[#42a5f5] rounded-xl py-1.5 px-4 text-xs font-semibold">
+		<p className="w-fit bg-[#42a5f5]/25 text-[#42a5f5] rounded-xl py-1.5 px-4 text-xs font-semibold">
 			In Progress
-		</span>
+		</p>
 	),
 	2: (
-		<span className="bg-[#35b779]/25 text-[#35b779] rounded-xl py-1.5 px-4 text-xs font-semibold">
+		<p className="w-fit bg-[#35b779]/25 text-[#35b779] rounded-xl py-1.5 px-4 text-xs font-semibold">
 			Interview
-		</span>
+		</p>
 	),
 	3: (
-		<span className="bg-[#bae721]/25 text-[#bae721] rounded-xl py-1.5 px-4 text-xs font-semibold">
+		<p className="w-fit bg-[#bae721]/25 text-[#bae721] rounded-xl py-1.5 px-4 text-xs font-semibold">
 			Accepted
-		</span>
+		</p>
 	),
 	4: (
-		<span className="bg-[#ef5350]/25 text-[#ef5350] rounded-xl py-1.5 px-4 text-xs font-semibold">
+		<p className="w-fit bg-[#ef5350]/25 text-[#ef5350] rounded-xl py-1.5 px-4 text-xs font-semibold">
 			Rejected
-		</span>
+		</p>
 	),
 };
 
 export default function DashboardRecentApplication() {
+	const [statusApplication, setStatusApplication] = useState<string>("");
+	const availableStatus: string[] = [
+		"Applied",
+		"In Progress",
+		"Interview",
+		"Accepted",
+		"Rejected",
+	];
+	console.log(statusApplication);
+
+	const handleStatusApplicationOption = (
+		e: React.ChangeEvent<HTMLSelectElement>,
+	) => {
+		setStatusApplication(e.target.value);
+	};
 	return (
 		<div className="flex flex-col justify-center items-center gap-2">
 			<div className="w-full flex justify-between items-center mt-3 px-5">
@@ -64,7 +80,10 @@ export default function DashboardRecentApplication() {
 							<th className="py-1.5 text-sm font-medium text-start">
 								Applied At
 							</th>
-							<th className="rounded-tr-xl text-sm font-medium text-start">
+							<th
+								colSpan={2}
+								className="rounded-tr-xl text-sm font-medium text-start"
+							>
 								Status
 							</th>
 						</tr>
@@ -89,6 +108,25 @@ export default function DashboardRecentApplication() {
 								<td>Frontend Developer</td>
 								<td>Nov 14, 2026</td>
 								<td>{index === 5 ? STATUS_INDEX[0] : STATUS_INDEX[index]}</td>
+								<td className="text-end">
+									<select
+										name="statusApplication"
+										id="statusApplication"
+										value={statusApplication}
+										onChange={handleStatusApplicationOption}
+										className="px-3 py-0.5 rounded-lg border border-(--custom-border-glass) text-sm"
+									>
+										{availableStatus.map((stats, i) => (
+											<option
+												key={i}
+												value={stats}
+												className="bg-(--custom-border)"
+											>
+												{stats}
+											</option>
+										))}
+									</select>
+								</td>
 							</tr>
 						))}
 					</tbody>
