@@ -7,27 +7,27 @@ import Image from "next/image";
 
 const STATUS_INDEX: Record<number, React.ReactNode> = {
 	0: (
-		<p className="w-fit bg-[#fbae3c]/25 text-[#fbae3c] rounded-xl py-1.5 px-4 text-xs font-semibold">
+		<p className="w-fit bg-[#fbae3c]/25 text-[#fbae3c] border border-[#fbae3c]/40 rounded-xl py-1.5 px-4 text-xs font-semibold">
 			Applied
 		</p>
 	),
 	1: (
-		<p className="w-fit bg-[#42a5f5]/25 text-[#42a5f5] rounded-xl py-1.5 px-4 text-xs font-semibold">
+		<p className="w-fit bg-[#42a5f5]/25 text-[#42a5f5] border border-[#42a5f5]/40 rounded-xl py-1.5 px-4 text-xs font-semibold">
 			In Progress
 		</p>
 	),
 	2: (
-		<p className="w-fit bg-[#35b779]/25 text-[#35b779] rounded-xl py-1.5 px-4 text-xs font-semibold">
+		<p className="w-fit bg-[#35b779]/25 text-[#35b779] border border-[#35b779]/40 rounded-xl py-1.5 px-4 text-xs font-semibold">
 			Interview
 		</p>
 	),
 	3: (
-		<p className="w-fit bg-[#bae721]/25 text-[#bae721] rounded-xl py-1.5 px-4 text-xs font-semibold">
+		<p className="w-fit bg-[#bae721]/25 text-[#bae721] border border-[#bae721]/40 rounded-xl py-1.5 px-4 text-xs font-semibold">
 			Accepted
 		</p>
 	),
 	4: (
-		<p className="w-fit bg-[#ef5350]/25 text-[#ef5350] rounded-xl py-1.5 px-4 text-xs font-semibold">
+		<p className="w-fit bg-[#ef5350]/25 text-[#ef5350] border border-[#ef5350]/40 rounded-xl py-1.5 px-4 text-xs font-semibold">
 			Rejected
 		</p>
 	),
