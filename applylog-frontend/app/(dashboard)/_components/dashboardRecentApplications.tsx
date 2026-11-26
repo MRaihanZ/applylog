@@ -92,7 +92,7 @@ export default function DashboardRecentApplication() {
 						{Array.from({ length: 6 }, (_, index) => (
 							<tr
 								key={index}
-								className="border-b border-b-(--custom-border-glass)"
+								className="border-b border-b-(--custom-border-glass) hover:bg-(--custom-border-glass)/40"
 							>
 								<td className="w-13 whitespace-nowrap">
 									{/* <Image
