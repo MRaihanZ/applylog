@@ -103,7 +103,7 @@ interface Props {
 		Applied: number[];
 		InProgress: number[];
 		Interview: number[];
-		Offer: number[];
+		Accepted: number[];
 		Rejected: number[];
 	};
 }
@@ -163,8 +163,8 @@ export default function DashboardLineChart({ dataProps }: Props) {
 				hidden: true,
 			},
 			{
-				label: "Offer",
-				data: dataProps.Offer,
+				label: "Accepted",
+				data: dataProps.Accepted,
 				borderColor: "#bae721",
 				backgroundColor: "rgba(186, 231, 33, 0.15)",
 				borderWidth: 3,

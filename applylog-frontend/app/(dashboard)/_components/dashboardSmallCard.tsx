@@ -15,7 +15,7 @@ const TITLE_INDEX: Record<number, string> = {
 	0: "Total Applications",
 	1: "In Progress",
 	2: "Interview",
-	3: "Offer",
+	3: "Accepted",
 	4: "Rejected",
 };
 

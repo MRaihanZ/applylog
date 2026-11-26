@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import type { Metadata } from "next";
 
 import HeaderDashboard from "./_components/headerDashboard";
@@ -7,7 +9,6 @@ import DashboardDoughnutChart from "./_components/dashboardDoughnutChart";
 import LoadingDashboardSmallCard from "./_components/loadingDashboardSmallCard";
 import LoadingDashboardLineChart from "./_components/loadingDashboardLineChart";
 import LoadingDashboardDoughnutChart from "./_components/loadingDashboardDoughnutChart";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
 	title: "Dashboard",
@@ -26,14 +27,14 @@ export default function DashboardPage() {
 		Applied: generateRandomData(10, 5, 50),
 		InProgress: generateRandomData(10, 5, 50),
 		Interview: generateRandomData(10, 5, 50),
-		Offer: generateRandomData(10, 5, 50),
+		Accepted: generateRandomData(10, 5, 50),
 		Rejected: generateRandomData(10, 5, 50),
 	};
 	const doughnutChartData: number[] = [
 		lineChartData.Applied[0],
 		lineChartData.InProgress[0],
 		lineChartData.Interview[0],
-		lineChartData.Offer[0],
+		lineChartData.Accepted[0],
 		lineChartData.Rejected[0],
 	];
 	return (
@@ -67,7 +68,7 @@ export default function DashboardPage() {
 				<Suspense fallback={<LoadingDashboardSmallCard />}>
 					<DashboardSmallCard
 						type={3}
-						totalNumber={lineChartData.Offer[0]}
+						totalNumber={lineChartData.Accepted[0]}
 						totalPercentage={0}
 						stateIndicator="equal"
 					/>
