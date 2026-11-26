@@ -6,6 +6,7 @@ import HeaderDashboard from "./_components/headerDashboard";
 import DashboardSmallCard from "./_components/dashboardSmallCard";
 import DashboardLineChart from "./_components/dashboardLineChart";
 import DashboardDoughnutChart from "./_components/dashboardDoughnutChart";
+import DashboardRecentApplication from "./_components/dashboardRecentApplications";
 import LoadingDashboardSmallCard from "./_components/loadingDashboardSmallCard";
 import LoadingDashboardLineChart from "./_components/loadingDashboardLineChart";
 import LoadingDashboardDoughnutChart from "./_components/loadingDashboardDoughnutChart";
@@ -91,6 +92,11 @@ export default function DashboardPage() {
 				<div className="basis-[calc(40%-0.5rem)] min-h-72 bg-(--custom-border)/20 border border-(--custom-border-glass) rounded-xl">
 					<Suspense fallback={<LoadingDashboardDoughnutChart />}>
 						<DashboardDoughnutChart dataProps={doughnutChartData} />
+					</Suspense>
+				</div>
+				<div className="basis-[calc(60%-0.5rem)] h-100 bg-(--custom-border)/20 border border-(--custom-border-glass) rounded-xl overflow-hidden scroll-auto">
+					<Suspense fallback={<LoadingDashboardLineChart />}>
+						<DashboardRecentApplication />
 					</Suspense>
 				</div>
 			</div>
