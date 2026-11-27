@@ -101,7 +101,7 @@ export default function DashboardPage() {
 					</Suspense>
 				</div>
 				<div className="basis-[calc(40%-0.5rem)] h-100 bg-(--custom-border)/20 border border-(--custom-border-glass) rounded-xl">
-					<Suspense fallback={<LoadingDashboardDoughnutChart />}>
+					<Suspense fallback={<LoadingDashboardLineChart />}>
 						<DashboardDeadline />
 					</Suspense>
 				</div>
